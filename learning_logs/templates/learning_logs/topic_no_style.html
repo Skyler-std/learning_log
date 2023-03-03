@@ -1,0 +1,24 @@
+{% extends 'learning_logs/base.html' %}
+
+{% block content %}
+
+<p>主题: {{ topic }}</p>
+
+<p>笔记内容:</p>
+<ul>
+    {% for entry in entries %}
+        <li>
+            <p>{{ entry.date_added|date:'Y-M-d H:i' }}</p>
+            <p>{{ entry.text|linebreaks }}</p>
+            <p>
+                <a href="{% url 'learning_logs:edit_entry' entry.id %}">编辑笔记</a>
+            </p>
+        </li>
+    {% empty %}
+        <li>没有笔记</li>
+    {% endfor %}
+</ul>
+
+<a href="{% url 'learning_logs:new_entry' topic.id %}">添加一个新笔记</a>
+
+{% endblock content %}

@@ -1,0 +1,13 @@
+{% extends 'learning_logs/base.html' %}
+
+{% block page_header %}
+    <div class="jumbotron">
+        <h1 class="display-3">学习笔记</h1>
+
+        <p class="lead">创建您自己的账户，使用本网站记录您的学习路程，无论何时，
+            无论何地^_^</p>
+
+        <a class="btn btn-lg btn-primary" href="{% url 'users:register' %}"
+            role="button">注册 &raquo;</a>
+    </div>
+{% endblock page_header %}

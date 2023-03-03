@@ -1,0 +1,67 @@
+{% load bootstrap4 %}
+
+<!doctype html>
+<html lang="zh-hans">
+    <!--文件头部-->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,
+      shrink-to-fit=no">
+    <title>学习笔记</title>
+
+    {% bootstrap_css %}
+    {% bootstrap_javascript jquery='full' %}
+
+</head>
+<body>
+    <!--导航栏-->
+    <nav class="navbar navbar-expand-md navbar-light bg-light mb-4 border">
+
+        <a class="navbar-brand" href="{% url 'learning_logs:index' %}">
+            学习笔记首页</a>
+        
+        <button class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarCollapse" aria-controls="navbarCollapse"
+            aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span></button>
+        <!--导航栏第二部分-->
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'learning_logs:topics' %}">
+                        主题</a></li>
+            </ul>
+            <!--最后一部分-->
+            <ul class="navbar-nav ml-auto">
+                {% if user.is_authenticated %}
+                  <li class="nav-item">
+                    <span class="navbar-text">欢迎回来，{{ user.username }}</span>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'users:logout' %}">注销</a>
+                  </li>
+                {% else %}
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'users:register' %}">注册</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'users:login' %}">登录</a>
+                  </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+
+    <!--页面主体内容-->
+    <main role="main" class="container">
+        <div class="pb-2 mb-2 border-bottom">
+            {% block page_header %}{% endblock page_header %}
+        </div>
+        <div>
+            {% block content %}{% endblock content %}
+        </div>
+    </main>
+
+</body>
+</html>
+        
