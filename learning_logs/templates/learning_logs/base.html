@@ -1,4 +1,4 @@
-{% load bootstrap4 %}
+{% load django_bootstrap5 %}
 
 <!doctype html>
 <html lang="zh-hans">
@@ -10,7 +10,8 @@
     <title>学习笔记</title>
 
     {% bootstrap_css %}
-    {% bootstrap_javascript jquery='full' %}
+    {% bootstrap_javascript %}
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
 
 </head>
 <body>
@@ -20,26 +21,28 @@
         <a class="navbar-brand" href="{% url 'learning_logs:index' %}">
             学习笔记首页</a>
         
-        <button class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarCollapse" aria-controls="navbarCollapse"
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarCollapse" aria-controls="navbarCollapse"
             aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span></button>
         <!--导航栏第二部分-->
         <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav mr-auto">
+            <ul class="navbar-nav me-auto">
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'learning_logs:topics' %}">
                         主题</a></li>
             </ul>
             <!--最后一部分-->
-            <ul class="navbar-nav ml-auto">
+            <div class="collapse navbar-collapse justify-content-right">
+            <ul class="navbar-nav ms-auto">
                 {% if user.is_authenticated %}
                   <li class="nav-item">
-                    <span class="navbar-text">欢迎回来，{{ user.username }}</span>
+                      <span class="navbar-text">欢迎回来，{{ user.username }}</span>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="{% url 'users:logout' %}">注销</a>
                   </li>
+                  </div>
                 {% else %}
                   <li class="nav-item">
                     <a class="nav-link" href="{% url 'users:register' %}">注册</a>

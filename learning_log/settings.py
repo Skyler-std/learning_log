@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     
     # 第三方应用程序
     'simpleui',
-    'bootstrap4',
+    'django_bootstrap5',
     
     # 默认应用程序
     'django.contrib.admin',

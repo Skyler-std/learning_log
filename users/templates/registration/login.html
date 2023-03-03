@@ -1,5 +1,5 @@
 {% extends 'learning_logs/base.html' %}
-{% load bootstrap4 %}
+{% load django_bootstrap5 %}
 
 {% block page_header %}
     <h2>登录您的账号</h2>
@@ -10,9 +10,7 @@
     <form method="post" action="{% url 'users:login' %}" class="form">
         {% csrf_token %}
         {% bootstrap_form form %}
-        {% buttons %}
-            <button name="submit" class="btn btn-primary">登录</button>
-        {% endbuttons %}
+        <button name="submit" class="btn btn-primary">登录</button>
         <input type="hidden" name="next" value="{% url 'learning_logs:index' %}" />
     </form>
 {% endblock content %}
